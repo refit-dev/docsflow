@@ -4,7 +4,7 @@ import Stripe from 'stripe';
 const stripeKey = process.env.STRIPE_SECRET_KEY;
 
 export const stripe = stripeKey ? new Stripe(stripeKey, {
-  apiVersion: '2025-08-27.basil',
+  apiVersion: '2026-09-30.endive',
   appInfo: {
     name: 'DocsFlow',
     version: '1.0.0',
@@ -36,7 +36,7 @@ export async function createCheckoutSession({
   try {
     const session = await stripe.checkout.sessions.create({
       mode: 'subscription',
-      payment_method_types: ['card'],
+      allowed_payment_method_types: ['card'],
       line_items: [
         {
           price: priceId,
